@@ -1,43 +1,34 @@
+
 let numDrumButtons = document.querySelectorAll(".drum").length;
-// let audio = new Audio('sounds/tom-1.mp3');
-
-// let tom1 = document.querySelector(".w");
-// tom1.innerHTML = '<img src="images/tom1.png" />';
-
-// let tom2 = document.querySelector(".a");
-// tom2.innerHTML = '<img src="images/tom2.png" />';
-
-// let tom3 = document.querySelector(".s");
-// tom3.innerHTML = '<img src="images/tom3.png" />';
-
-// let tom4 = document.querySelector(".d");
-// tom4.innerHTML = '<img src="images/tom4.png" />';
-
-// let snare  = document.querySelector(".j");
-// snare.innerHTML = '<img src="images/snare.png" />';
-
-// let crash = document.querySelector(".k");
-// crash.innerHTML = '<img src="images/crash.png" />';
-
-// let kick = document.querySelector(".l");
-// kick.innerHTML = '<img src="images/kick.png" />';
-
 
 // DETECT BUTTON PRESSING, then play audio
 for (i = 0; i < numDrumButtons; i++) {
   let drumButtons = document.querySelectorAll(".drum")[i];
   drumButtons.addEventListener("click", function () {
-    // this.style.color = "white";
+
     let buttonInnerHTML = this.innerHTML;
     
     playAudio(buttonInnerHTML);
+    btnAnimate(buttonInnerHTML);
+
+    setTimeout(function() {
+      deAnimate(buttonInnerHTML)
+    }, 100 );
+
 
   });
 }
 
 // DETECET KEYBOARD INPUT, then play audio
 document.addEventListener("keypress", function(event) {
+
   playAudio(event.key);
+  btnAnimate(event.key);
+  // let pauseAnimate = setTimeout(deAnimate(event.key), 9000);
+
+  setTimeout(function() {
+    deAnimate(event.key)
+  }, 100 );
 
 });
 
@@ -86,6 +77,22 @@ function playAudio(key) {
   }
 
 }
+
+// let kick = document.querySelector(".l");
+// kick.innerHTML = '<img src="images/kick.png" />';
+
+function btnAnimate(currentKey) {
+  let activeBtn = document.querySelector("." + currentKey);
+  activeBtn.classList.add("pressed");
+  
+
+}
+
+function deAnimate(currentKey) {
+  let activeBtn = document.querySelector("." + currentKey);
+  activeBtn.classList.remove("pressed");
+}
+
 
 function alerty() {
   alert("I got clicked");
