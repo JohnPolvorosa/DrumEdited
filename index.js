@@ -56,16 +56,17 @@ for (i = 0; i < numDrumButtons; i++) {
         break;
 
       case "k":
+        let crash = new Audio("sounds/crash.mp3");
+        crash.play();
+        break;
+
+      case "l":
         let kick = new Audio("sounds/kick-bass.mp3");
         kick.play();
         break;
 
-      case "l":
-        let audio = new Audio("sounds/crash.mp3");
-        crash.play();
-        break;
-
       default:
+        console.log(buttonInnerHTML)
         break;
     }
   });
